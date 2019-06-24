@@ -25,11 +25,12 @@ $("button").click(function(){
     $("ul").append("<li>"+$("input").val()+"</li>")
     wisdom.push({text:$("input").val()})
     if(wisdom.length%2===0){
-        localStorage.wisdom=JSON.stringify(wisdom)
+        
+        localStorage.wisdom=JSON.stringify(wisdom || "[]")
         
     }
 })
-let x=JSON.parse(localStorage.wisdom)
-for(let i of x){
-$("ul").append(x.i.text)
+let x=JSON.parse(localStorage.wisdom || "[]")
+for(let i in x){
+$("ul").append("<li>"+x[i].text+"</li>")
 }
