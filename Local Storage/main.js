@@ -20,17 +20,37 @@ const cart=JSON.parse(localStorage.userStorage)
 console.log(userStorage.cart[1].count)
 
 const wisdom=[]
+if(wisdom===null){
+    localStorage.setItem( "wisdom",JSON.stringify(wisdom))
+}
 
-$("button").click(function(){
-    $("ul").append("<li>"+$("input").val()+"</li>")
+    wisdom.push(JSON.parse(localStorage.wisdom).flat())
+   
+
+$("#click").click(function(){
+    for(let i of wisdom){
+    $("ul").append("<li id="+i+">"+$("input").val()+"</li>")
+    $("#a"+i).append("<button class='delete'>x</button>")
+    }
     wisdom.push({text:$("input").val()})
     if(wisdom.length%2===0){
-        
-        localStorage.wisdom=JSON.stringify(wisdom || "[]")
+      
+        localStorage.setItem( "wisdom",JSON.stringify(wisdom.flat()))
         
     }
 })
-let x=JSON.parse(localStorage.wisdom || "[]")
+let x=JSON.parse(localStorage.wisdom ).flat()
 for(let i in x){
-$("ul").append("<li>"+x[i].text+"</li>")
+$("ul").append("<li id="+i+">"+x[i].text+"</li>")
+$("#a"+i).append("<button class='delete'>x</button>")
 }
+
+$("#delete").click(function(){
+    localStorage.clear()
+})
+
+$(".delete").click(function(){
+    for(let i of wisdom){
+    localStorage.removeItem(this.id)
+    }
+})
