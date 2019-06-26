@@ -301,3 +301,22 @@ const list= [
   const shortlist=[]
 list.forEach(l=>shortlist.push({email:l.email,name:l.company.name}))
 console.log(shortlist)
+
+const  userobjects=list.filter(l=>l.address.zipcode.startsWith("5")).map(l=>l.id)
+console.log(userobjects)
+
+const names=list.filter(l=>l.name.startsWith("C")).map(l=>l.name)
+console.log(names)
+
+console.log(list.every(l=>l.address.city==="South Christy"))
+
+
+const find=suit=>list.find(l=>l.address.suite===suit).company.name
+console.log(find("Apt. 950"))
+
+const fun=user=>
+list.filter((l=>l.name===user))
+.forEach(l=> console.log(l.name+" lives in "+l.address.city+", and owns the company" +l.company.name))
+console.log(fun("Glenna Reichert"))
+
+
